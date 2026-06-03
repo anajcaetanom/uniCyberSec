@@ -7,7 +7,7 @@ int main() {
     struct bpf_program *prog;
     struct bpf_link *link = NULL;
 
-    /* 1. Validação da Syscall e do Verificador (Carregamento) */
+    /* 1. LOAD */
     obj = bpf_object__open_file("tracepoint_test.o", NULL);
     if (!obj || bpf_object__load(obj)) {
         fprintf(stderr, "Falha: O kernel rejeitou o carregamento do bytecode.\n");
@@ -20,7 +20,7 @@ int main() {
         return 1;
     }
 
-    /* 2. Validação do Subsistema de Tracepoints (Acoplamento) */
+    /* 2. ATTACH */
     link = bpf_program__attach_tracepoint(prog, "syscalls", "sys_enter_clone");
     if (!link || libbpf_get_error(link)) {
         fprintf(stderr, "Falha Crítica: Tracepoint inacessível. O subsistema não expõe os eventos.\n");

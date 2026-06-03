@@ -1,5 +1,7 @@
 #include <linux/bpf.h>
 
+// não lembro se o robô tem bpf_helpers.h ou não
+
 /* Definição manual para contornar a ausência do bpf_helpers.h */
 #define SEC(name) __attribute__((section(name), used))
 

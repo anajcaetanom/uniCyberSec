@@ -7,7 +7,7 @@ int main() {
     struct bpf_program *prog;
     struct bpf_link *link = NULL;
 
-    /* 1. Carrega o objeto (Valida a syscall bpf e o Verificador) */
+    /* 1. LOAD */
     obj = bpf_object__open_file("kprobe_test.o", NULL);
     if (!obj || bpf_object__load(obj)) {
         fprintf(stderr, "Falha: O kernel rejeitou o carregamento do programa.\n");
@@ -20,7 +20,7 @@ int main() {
         return 1;
     }
 
-    /* 2. Tenta realizar o acoplamento do kprobe (Valida o subsistema de tracing) */
+    /* 2. ATTACH */
     link = bpf_program__attach_kprobe(prog, false, "__x64_sys_clone");
     if (!link || libbpf_get_error(link)) {
         fprintf(stderr, "Falha Crítica: Kprobe nao suportado. O subsistema perf_event/tracefs esta inacessivel.\n");

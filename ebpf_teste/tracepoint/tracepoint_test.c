@@ -1,6 +1,5 @@
 #include <linux/bpf.h>
 
-/* Definição manual para contornar a ausência do bpf_helpers.h */
 #define SEC(name) __attribute__((section(name), used))
 
 SEC("tracepoint/syscalls/sys_enter_clone")

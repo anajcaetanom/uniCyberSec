@@ -7,14 +7,14 @@ int main() {
     struct bpf_program *prog;
     struct bpf_link *link = NULL;
 
-    /* 1. Fase de Abertura do Arquivo Objeto */
+    /* 1. OPEN */
     obj = bpf_object__open_file("tracing_test.o", NULL);
     if (!obj) {
         fprintf(stderr, "Falha: Erro ao abrir o arquivo tracing_test.o.\n");
         return 1;
     }
 
-    /* 2. Fase de Carregamento (Validação do Verificador e dependência de BTF) */
+    /* 2. LOAD */
     if (bpf_object__load(obj)) {
         fprintf(stderr, "Falha Crítica: O kernel rejeitou o carregamento do programa TRACING. Possível ausência de BTF no kernel (vmlinux).\n");
         return 1;
@@ -26,7 +26,7 @@ int main() {
         return 1;
     }
 
-    /* 3. Fase de Acoplamento (Attach Trace) */
+    /* 3. ATTACH */
     link = bpf_program__attach_trace(prog);
     if (!link || libbpf_get_error(link)) {
         fprintf(stderr, "Falha: Não foi possível realizar o attach do tipo fentry.\n");
