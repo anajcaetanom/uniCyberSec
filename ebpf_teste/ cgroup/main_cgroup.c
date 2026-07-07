@@ -26,7 +26,7 @@ int main() {
     }
 
     /* 2. Carrega TODOS os programas de uma vez só no Kernel */
-    obj = bpf_object__open_file("cgroup_all.o", NULL);
+    obj = bpf_object__open_file("cgroup_test.o", NULL);
     if (!obj || bpf_object__load(obj)) {
         fprintf(stderr, "Falha Crítica: Verificador rejeitou o arquivo unificado.\n");
         close(cg_fd);

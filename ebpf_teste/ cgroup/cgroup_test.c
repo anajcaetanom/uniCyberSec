@@ -33,7 +33,7 @@ int test_cg_skb(struct __sk_buff *skb) {
 }
 
 /* 6. Operações de Estado TCP (SYN, ESTABLISHED, etc.) */
-SEC("cgroup/sock_ops")
+SEC("sockops")
 int test_sock_ops(struct bpf_sock_ops *skops) {
     return 0; /* ATENÇÃO: Para SOCK_OPS, 0 significa Sucesso/Permitir */
 }
