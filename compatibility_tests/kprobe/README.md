@@ -1,29 +1,43 @@
-ver se existe o diretório:
+# kprobe
+
+Testa a compatibilidade de programas eBPF do tipo _kprobe_ no robô Unitree Go2, verificando se é possível instrumentar dinamicamente uma função do kernel via `perf_event`/`tracefs`.
+
+## Arquivos
+
+- **`kprobe_test.c`** — programa eBPF atrelado à entrada da função `__x64_sys_clone`.
+- **`main_kprobe.c`** — userspace: carrega o objeto compilado e tenta o _attach_ via _kprobe_.
+
+## Gancho testado
+
+| Programa | Seção | Função-alvo | O que intercepta |
+|---|---|---|---|
+| `kprobe_teste` | `kprobe/__x64_sys_clone` | `__x64_sys_clone` | Entrada da _syscall_ responsável pela criação de processos/threads |
+
+O programa apenas retorna `0`, sem alterar o fluxo de execução.O objetivo é confirmar que o _kernel_ do robô suporta a instrumentação via _kprobe_, não intervir na chamada.
+
+## Como rodar
+
+Verificar se o _tracefs_ está disponível:
 
 ```bash
 ls -ld /sys/kernel/debug/tracing /sys/kernel/tracing 2>/dev/null
 ```
 
-ver qual o nome da função sys_clone:
+Confirmar o nome real da função de clone no _kernel_ do robô (pode variar por arquitetura/versão):
 
 ```bash
 sudo grep -E '(__x64_sys_clone|sys_clone|clone3|kernel_clone|do_fork|_do_fork)' /sys/kernel/tracing/available_filter_functions
 ```
 
-compilar programa eBPF:
+Compilar o programa eBPF e o binário userspace, e executar:
 
 ```bash
 clang -O2 -target bpf -I/usr/include/$(uname -m)-linux-gnu -c kprobe_test.c -o kprobe_test.o
-```
-
-compilar main:
-
-```bash
 gcc main_kprobe.c -lbpf -o verificar_kprobe
-```
-
-rodar:
-
-```bash
 sudo ./verificar_kprobe
 ```
+
+## Tratamento de erros
+
+- **Carregamento do `.o`** e **programa não encontrado no ELF** são falhas fatais de compilação/kernel — abortam com mensagem específica para cada causa.
+- **Attach via kprobe** falha separadamente, com mensagem própria indicando que o subsistema `perf_event`/`tracefs` está inacessível — o que costuma indicar que kprobes não são suportados no ambiente do robô.
