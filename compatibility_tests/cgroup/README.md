@@ -1,6 +1,7 @@
 # cgroup
 
-Testa a compatibilidade de programas eBPF do tipo _cgroup_ no robô Unitree Go2, verificando se cada gancho (*hook*) consegue ser carregado e atrelado (*attach*)
+Testa a compatibilidade de programas eBPF do tipo _cgroup_ no robô Unitree Go2, verificando se cada gancho (*hook*) consegue ser carregado e atrelado (*attach*). 
+Programas do tipo _cgroup_ permitem anexar programas eBPF a um _cgroup_ para interceptar e controlar recursos de processos dentro dele, como acesso a dispositivos, criação/liberação de _sockets_, `bind()` e tráfego de rede (entrada/saída). É muito usado para políticas de segurança e isolamento de containers.
 
 ## Arquivos
 
@@ -32,7 +33,7 @@ O binário abre `/sys/fs/cgroup`, carrega `cgroup_test.o` e tenta atrelar cada p
 
 ## Tratamento de erros
 
-O erro é reportado de forma diferente conforme a etapa:
+O erro é reportado conforme a etapa:
 
 - Abertura do _cgroup_ e carregamento do `.o` no _kernel_ são falhas fatais. O programa imprime a causa e aborta com `return 1`.
 - _Attach_ de cada gancho é isolado: uma falha só imprime `[ FALHA ] <nome> rejeitado.` e segue para o próximo, sem interromper os demais testes.
