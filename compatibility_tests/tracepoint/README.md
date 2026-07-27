@@ -20,23 +20,25 @@ O programa apenas retorna `0`. O objetivo aqui não é interferir em nada, e sim
 
 Verificar se o evento existe no _kernel_:
 
-\`\`\`bash
+```bash
 ls /sys/kernel/tracing/events/syscalls/ | grep clone
-\`\`\`
+```
 
 Compilar e executar:
 
-\`\`\`bash
+```bash
 clang -O2 -target bpf -I/usr/include/$(uname -m)-linux-gnu -c tracepoint_test.c -o tracepoint_test.o
+```
+```bash
 gcc main_tp.c -lbpf -o main_tp
 sudo ./main_tp
-\`\`\`
+```
 
-O binário carrega \`tracepoint_test.o\` no _kernel_ e tenta atrelar o programa ao _tracepoint_ \`syscalls/sys_enter_clone\`, imprimindo uma mensagem de sucesso ou falha.
+O binário carrega `tracepoint_test.o` no _kernel_ e tenta atrelar o programa ao _tracepoint_ `syscalls/sys_enter_clone`, imprimindo uma mensagem de sucesso ou falha.
 
 ## Tratamento de erros
 
 O erro é reportado conforme a etapa:
 
-- Carregamento do \`.o\` no _kernel_ ou programa não encontrado no objeto são falhas fatais. O programa imprime a causa e aborta com \`return 1\`.
-- Falha no _attach_ do _tracepoint_ também é fatal: imprime \`Falha Crítica: Tracepoint inacessível. O subsistema não expõe os eventos.\` e aborta com \`return 1\`.
+- Carregamento do `.o` no _kernel_ ou programa não encontrado no objeto são falhas fatais. O programa imprime a causa e aborta com `return 1`.
+- Falha no _attach_ do _tracepoint_ também é fatal: imprime `Falha Crítica: Tracepoint inacessível. O subsistema não expõe os eventos.` e aborta com `return 1`.

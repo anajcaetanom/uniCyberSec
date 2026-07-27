@@ -19,23 +19,25 @@ O programa apenas retorna `0`. O objetivo aqui não é interferir em nada, e sim
 
 Verificar o nome correto da função no kernel:
 
-\`\`\`bash
+```bash
 sudo grep -E '(__x64_sys_clone|sys_clone|clone3|kernel_clone|do_fork|_do_fork)' /sys/kernel/tracing/available_filter_functions
-\`\`\`
+```
 
 Compilar e executar:
 
-\`\`\`bash
+```bash
 clang -O2 -target bpf -I/usr/include/$(uname -m)-linux-gnu -c tracing_test.c -o tracing_test.o
+```
+```bash
 gcc main_tracing.c -lbpf -o main_tracing
 sudo ./main_tracing
-\`\`\`
+```
 
-O binário carrega \`tracing_test.o\` no _kernel_ e tenta atrelar o programa via _fentry_ à função \`__x64_sys_clone\`, imprimindo uma mensagem de sucesso ou falha.
+O binário carrega `tracing_test.o` no _kernel_ e tenta atrelar o programa via _fentry_ à função `__x64_sys_clone`, imprimindo uma mensagem de sucesso ou falha.
 
 ## Tratamento de erros
 
 O erro é reportado conforme a etapa:
 
-- Abertura do arquivo \`.o\`, carregamento no _kernel_ (possível ausência de BTF/vmlinux) e programa não encontrado no objeto são falhas fatais. O programa imprime a causa e aborta com \`return 1\`.
-- Falha no _attach_ do tipo _fentry_ também é fatal: imprime \`Falha: Não foi possível realizar o attach do tipo fentry.\` e aborta com \`return 1\`.
+- Abertura do arquivo `.o`, carregamento no _kernel_ (possível ausência de `BTF/vmlinux`) e programa não encontrado no objeto são falhas fatais. O programa imprime a causa e aborta com `return 1`.
+- Falha no _attach_ do tipo _fentry_ também é fatal: imprime `Falha: Não foi possível realizar o attach do tipo fentry.` e aborta com `return 1`.
