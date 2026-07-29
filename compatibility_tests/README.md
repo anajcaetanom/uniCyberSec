@@ -1,6 +1,6 @@
 # compatibility_tests
 
-Testes de compatibilidade que verificam quais tipos de programas eBPF conseguem ser carregados e executados no ambiente do robô Unitree Go2. É a etapa exploratória do repositório: define o que funciona antes de qualquer aprofundamento.
+Testes de compatibilidade que verificam quais tipos de programas eBPF conseguem ser carregados e executados no sistema operacional do robô Unitree Go2. É a etapa que define o que funciona antes de qualquer aprofundamento.
 
 ## Estrutura
 
