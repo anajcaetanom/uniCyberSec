@@ -1,6 +1,6 @@
 # uniCyberSec
 
-Repositório de pesquisa dedicado à avaliação e experimentação de programas eBPF (_extended Berkeley Packet Filter_) executados sobre o robô quadrúpede Unitree Go2. O trabalho está organizado em duas etapas metodológicas complementares: (i) um levantamento de compatibilidade dos recursos eBPF disponíveis na plataforma e (ii) o aprofundamento experimental sobre os recursos previamente validados.
+Repositório de pesquisa dedicado à avaliação e experimentação de programas eBPF (_extended Berkeley Packet Filter_) executados no robô quadrúpede Unitree Go2. O trabalho está organizado em duas etapas metodológicas complementares: (i) um levantamento de compatibilidade dos recursos eBPF disponíveis na plataforma e (ii) o aprofundamento experimental sobre os recursos previamente validados.
 
 ## Estrutura do repositório
 
