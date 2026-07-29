@@ -1,6 +1,6 @@
 # tracing
 
-Testa a compatibilidade de programas eBPF do tipo _tracing_ (fentry) no robô Unitree Go2, verificando se o gancho (*hook*) consegue ser carregado e atrelado (*attach*). Programas do tipo _tracing_ usam BTF (_BPF Type Format_) para anexar o programa diretamente à entrada (_fentry_) ou saída (_fexit_) de qualquer função do _kernel_, com acesso tipado aos argumentos e menor _overhead_ que _kprobes_. É a forma moderna e mais eficiente de fazer _tracing_, mas exige suporte a `BTF/vmlinux` no _kernel_.
+Testa a compatibilidade de programas eBPF do tipo _tracing_ (fentry) no robô Unitree Go2, verificando se o gancho (*hook*) consegue ser carregado e atrelado (*attach*). Programas do tipo _tracing_ usam BTF (_BPF Type Format_) para anexar o programa diretamente à entrada (_fentry_) ou saída (_fexit_) de qualquer função do _kernel_, com acesso tipado aos parâmetros e menor _overhead_ que _kprobes_. É a forma moderna e mais eficiente de fazer _tracing_, mas exige suporte a `BTF/vmlinux` no _kernel_.
 
 ## Arquivos
 
