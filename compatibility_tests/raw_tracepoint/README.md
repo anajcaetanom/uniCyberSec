@@ -1,7 +1,7 @@
 # raw_tracepoint
 
 Testa a compatibilidade de programas eBPF do tipo _raw_tracepoint_ no robô Unitree Go2, verificando se o gancho (*hook*) consegue ser carregado e atrelado (*attach*). 
-Programas eBPF do tipo _raw tracepoint_ são uma versão de baixo nível dos _tracepoints_, dando acesso direto aos argumentos brutos do evento sem a camada de formatação do _tracepoint_ tradicional. Tem menor _overhead_ e é usado quando se precisa de mais performance ou de dados que o _tracepoint_ normal não expõe.
+Programas eBPF do tipo _raw tracepoint_ são uma versão de baixo nível dos _tracepoints_, dando acesso direto aos parâmetros brutos do evento sem a camada de formatação do _tracepoint_ tradicional. Tem menor _overhead_ e é usado quando se precisa de mais performance ou de dados que o _tracepoint_ normal não expõe.
 
 ## Arquivos
 

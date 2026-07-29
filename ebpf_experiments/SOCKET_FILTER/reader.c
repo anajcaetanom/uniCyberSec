@@ -33,7 +33,7 @@ int main() {
         struct bpf_map_info info = {};
         __u32 len = sizeof(info);
         if (bpf_obj_get_info_by_fd(fd, &info, &len) == 0) {
-            if (strcmp(info.name, "ip_traffic_stat") == 0) {
+            if (strcmp(info.name, "ip_traffic_stats") == 0) {
                 map_fd = fd;
                 printf("mapa encontrado: id=%u name=%s\n", info.id, info.name);
                 break;
