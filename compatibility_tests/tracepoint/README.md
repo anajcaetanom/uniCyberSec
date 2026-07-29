@@ -16,7 +16,7 @@ Programas desse tipo permitem anexar programas eBPF a pontos de instrumentação
 
 O programa apenas retorna `0`. O objetivo aqui não é interferir em nada, e sim confirmar que o _hook_ é suportado pelo _kernel_.
 
-## Como rodar
+## Como executar
 
 Verificar se o evento existe no _kernel_:
 

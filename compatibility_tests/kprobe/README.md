@@ -16,7 +16,7 @@ Programas _kprobe_ permitem instrumentar dinamicamente quase qualquer função d
 
 O programa apenas retorna `0`, sem alterar o fluxo de execução. O objetivo é apenas confirmar que o _kernel_ do robô suporta a instrumentação via _kprobe_.
 
-## Como rodar
+## Como executar
 
 Verificar se o _tracefs_ está disponível:
 

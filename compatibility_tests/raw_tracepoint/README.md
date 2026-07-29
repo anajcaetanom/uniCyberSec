@@ -16,7 +16,7 @@ Programas eBPF do tipo _raw tracepoint_ são uma versão de baixo nível dos _tr
 
 O programa apenas retorna `0`. O objetivo aqui não é interferir em nada, e sim confirmar que o _hook_ é suportado pelo _kernel_.
 
-## Como rodar
+## Como executar
 
 ```bash
 clang -O2 -target bpf -c raw_tp_test.c -o raw_tp_test.o

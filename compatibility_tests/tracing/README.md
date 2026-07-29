@@ -15,7 +15,7 @@ Testa a compatibilidade de programas eBPF do tipo _tracing_ (fentry) no robô Un
 
 O programa apenas retorna `0`. O objetivo aqui não é interferir em nada, e sim confirmar que o _hook_ é suportado pelo _kernel_.
 
-## Como rodar
+## Como executar
 
 Verificar o nome correto da função no kernel:
 

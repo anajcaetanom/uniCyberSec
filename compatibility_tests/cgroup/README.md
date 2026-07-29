@@ -21,7 +21,7 @@ Programas do tipo _cgroup_ permitem anexar programas eBPF a um _cgroup_ para int
 
 Todos os programas retornam apenas `1` (ou `0`, no caso de `sock_ops`) para permitir a ação. O objetivo aqui não é bloquear nada, e sim confirmar que o _hook_ é suportado pelo _kernel_.
 
-## Como rodar
+## Como executar
 
 ```bash
 clang -O2 -target bpf -c cgroup_test.c -o cgroup_test.o
