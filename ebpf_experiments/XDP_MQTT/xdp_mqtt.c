@@ -130,9 +130,9 @@ int monitor_robot_telemetry(struct xdp_md *ctx)
         __u32 target_ip1 = IP4(43,175,228,18);
         __u32 target_ip2 = IP4(43,175,229,18);
 
-        if (ip->daddr == target_ip1 || ip->saddr == target_ip1)
+        if (ip->saddr == target_ip1)
             key = 1;
-        else if (ip->daddr == target_ip2 || ip->saddr == target_ip2)
+        else if (ip->saddr == target_ip2)
             key = 2;
 
         __u64 *value = bpf_map_lookup_elem(&unitree_telemetry_count, &key);

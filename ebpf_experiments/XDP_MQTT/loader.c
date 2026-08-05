@@ -15,7 +15,7 @@ int main() {
     if (bpf_object__load(obj)) { fprintf(stderr, "load failed\n"); return 1; }
 
     struct bpf_program *prog = bpf_object__find_program_by_name(obj, "monitor_robot_telemetry");
-    bpf_xdp_attach(ifindex, bpf_program__fd(prog), XDP_FLAGS_SKB_MODE, NULL);
+    bpf_set_link_xdp_fd(ifindex, bpf_program__fd(prog), XDP_FLAGS_SKB_MODE);
 
     struct bpf_map *map = bpf_object__find_map_by_name(obj, "unitree_telemetry_count");
     int map_id = bpf_map__fd(map) >= 0 ? 0 : -1;
